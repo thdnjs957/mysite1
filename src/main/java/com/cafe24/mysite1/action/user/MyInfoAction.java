@@ -12,24 +12,21 @@ import com.cafe24.mysite1.vo.UserVo;
 import com.cafe24.web.WebUtil;
 import com.cafe24.web.mvc.Action;
 
-public class JoinAction implements Action {
+public class MyInfoAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
-		String name = request.getParameter("name");
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		String gender = request.getParameter("gender");
+		Long no = Long.parseLong(request.getParameter("no"));
+		System.out.println(no);
+		UserVo vo = new UserDao().get(no);
 		
-		UserVo vo = new UserVo();
-		vo.setName(name);
-		vo.setEmail(email);
-		vo.setPassword(password);
-		vo.setGender(gender);
+		System.out.println(vo.getName());
+		request.setAttribute("name", vo.getName());
+		request.setAttribute("password", vo.getPassword());
+		request.setAttribute("gender", vo.getGender());
+		request.setAttribute("email", vo.getEmail());
 		
-		new UserDao().insert(vo);
-
-		WebUtil.redirect(request, response, request.getContextPath() + "/user?a=joinsuccess");
+		WebUtil.redirect(request, response, request.getContextPath());
 	}
 }

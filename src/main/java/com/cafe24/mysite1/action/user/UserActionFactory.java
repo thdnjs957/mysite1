@@ -6,32 +6,33 @@ import com.cafe24.web.mvc.ActionFactory;
 
 public class UserActionFactory extends ActionFactory {
 
-	//String s = "JoinAction"; String으로 create object
-	
 	@Override
 	public Action getAction(String actionName) {
-
+		
 		Action action = null;
 		
-		if("joinform".equals(actionName)) {
-			
+		if ("joinform".equals(actionName)) {
 			action = new JoinFormAction();
-
-		} else if("join".equals(actionName)){
-			
+		} else if ("join".equals(actionName)) {
 			action = new JoinAction();
-			
-		} else if("joinsuccess".equals(actionName)){
+		} else if ("joinsuccess".equals(actionName)) {
 			action = new JoinSuccessAction();
-
-		} else if("loginform".equals(actionName)){
+		} else if ("loginform".equals(actionName)) {
 			action = new LoginFormAction();
-
+		} else if ("login".equals(actionName)) {
+			action = new LoginAction();
+		} else if ("logout".equals(actionName)) {
+			action = new LogoutAction();
+		} else if ("updateform".equals(actionName)) {
+			action = new UpdateFormAction();
+		} else if ("update".equals(actionName)) {
+			action = new UpdateAction();
+		}  else if ("myInfo".equals(actionName)) {
+			action = new MyInfoAction();
 		} else {
 			action = new MainAction();
 		}
-		
+
 		return action;
 	}
-
 }
