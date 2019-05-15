@@ -30,11 +30,6 @@ public class UpdateAction implements Action {
 		
 		boolean updateCheck = new UserDao().update(vo);
 		
-		if(updateCheck) {
-			WebUtil.forward(request, response, "/WEB-INF/views/user/myinfo.jsp");
-			return;
-		}
-		
 		WebUtil.forward(request, response, "/WEB-INF/views/main/index.jsp");
 		
 		/*

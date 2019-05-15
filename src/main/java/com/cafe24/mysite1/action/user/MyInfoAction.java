@@ -17,16 +17,16 @@ public class MyInfoAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
+		
 		Long no = Long.parseLong(request.getParameter("no"));
+		
 		System.out.println(no);
 		UserVo vo = new UserDao().get(no);
 		
 		System.out.println(vo.getName());
-		request.setAttribute("name", vo.getName());
-		request.setAttribute("password", vo.getPassword());
-		request.setAttribute("gender", vo.getGender());
-		request.setAttribute("email", vo.getEmail());
 		
-		WebUtil.redirect(request, response, request.getContextPath());
+		request.setAttribute("vo", vo);
+		
+		WebUtil.forward(request, response, "/WEB-INF/views/user/myinfo.jsp");
 	}
 }
